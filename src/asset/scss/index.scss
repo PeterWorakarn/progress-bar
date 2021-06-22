@@ -1,12 +1,18 @@
-$accent:red;
-$bg:black;
-$timing:.25s;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+$accent:#8A3FFC;
+$bg:#8A3FFC;
+$timing:.35s;
 
 * {
-    font-family: sans-serif;
+    font-family: 'Roboto Mono', monospace;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    &::selection {
+        background: $accent;
+        color: white;
+    }
 }
 
 
@@ -15,18 +21,29 @@ $timing:.25s;
 
 body {
     max-width: 360px;
-    min-height: 80vh;
+    min-height: 100vh;
     margin: 0 auto;
     display: grid;
     place-items: center;
-
+    background: $bg;
+    .waveDecor {
+        position: absolute;
+        bottom: 0px;
+        left:0;
+        z-index: -1;
+    }
     .container {
         padding: 20px;
-        border: 2px solid #eae6eb;
+        border: 2px solid transparent;
         margin-bottom: 1rem;
         margin-top: 1rem;
-        border-radius: .25rem;
+        border-radius: 1rem;
         box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+
+        will-change: transform;
+        backface-visibility: hidden;
+        background: linear-gradient(0deg, hsla(0, 0%, 100%, 0.7) 0%, hsla(0, 0%, 100%, 1) 100%);
+        backdrop-filter: blur(80px);
 
         .progression {
             margin: 20px auto;
@@ -48,20 +65,20 @@ body {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 
                 svg {
                     width: 310px;
                     height: 310px;
                     transform: rotate(-90deg);
+
                     .open {
-                        opacity: 1;
-                        transition: all .5s;
+                        transition: all $timing;
                     }
+
                     .unset {
-                        opacity: 1;
-                        transition: all .5s;
+                        transition: all $timing;
                     }
+
                     circle {
                         width: 310px;
                         height: 310px;
@@ -77,9 +94,10 @@ body {
                             stroke-dashoffset: 0;
                             stroke: #f3f3f3;
                         }
+
                         &:nth-child(2) {
                             stroke-dashoffset: calc(950 - (950 * 0)/100);
-                            stroke: $accent; 
+                            stroke: $accent;
                         }
                     }
                 }
@@ -145,7 +163,7 @@ body {
                 }
 
 
-                
+
             }
         }
 
@@ -166,7 +184,8 @@ body {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                pointer-events: cursor;
+                pointer-events: auto;
+                cursor: pointer;
                 box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.20);
             }
 

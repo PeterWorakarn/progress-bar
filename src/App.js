@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import wave from './asset/wave.svg';
 
 function App() {
   const [value, setvalue] = useState(0)
@@ -22,6 +23,7 @@ function App() {
   }
 
   return (
+  <>
     <div className="container">
       <main className="progression">
         <div className="progression__circle">
@@ -39,6 +41,8 @@ function App() {
         <div onClick={increaseHandler} className="control__increase">+</div>
       </div>
     </div>
+    <img className="waveDecor" src={wave} alt="wave decoration"/>
+  </>
   );
 }
 
