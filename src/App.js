@@ -24,11 +24,14 @@ function App() {
   return (
     <div className="container">
       <main className="progression">
-        <div style={{ width: value * 3 }} className="progression__line"> </div>
         <div className="progression__circle">
-          {/* <div className="left"></div> */}
-          {/* <div className="right"></div> */}
-          <p className={`${change ? "value progression__circle__open" : "value progression__circle__unset"}`}>{value}%</p>
+          <svg>
+            <circle className={`${change ? "open" : "unset"}`} cx="150" cy="150" r="150"></circle>
+            <circle className={`${change ? "open" : "unset"}`} style={{ strokeDashoffset: `calc(950 - (950 * ${value})/100)` }} cx="150" cy="150" r="150"></circle>
+          </svg>
+          <div className="number">
+            <p className={`${change ? "value open" : "value unset"}`}>{value}%</p>
+          </div>
         </div>
       </main>
       <div className="control">

@@ -1,4 +1,5 @@
-$color:red;
+$accent:red;
+$bg:black;
 $timing:.25s;
 
 * {
@@ -13,9 +14,11 @@ $timing:.25s;
 
 
 body {
-    max-width: 340px;
+    max-width: 360px;
     min-height: 80vh;
     margin: 0 auto;
+    display: grid;
+    place-items: center;
 
     .container {
         padding: 20px;
@@ -38,8 +41,8 @@ body {
 
             &__circle {
                 position: relative;
-                width: 300px;
-                height: 300px;
+                width: 310px;
+                height: 310px;
                 border-radius: 50%;
                 background: white;
                 display: flex;
@@ -47,88 +50,103 @@ body {
                 justify-content: center;
                 box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 
+                svg {
+                    width: 310px;
+                    height: 310px;
+                    transform: rotate(-90deg);
+                    .open {
+                        opacity: 1;
+                        transition: all .5s;
+                    }
+                    .unset {
+                        opacity: 1;
+                        transition: all .5s;
+                    }
+                    circle {
+                        width: 310px;
+                        height: 310px;
+                        fill: none;
+                        stroke-width: 10;
+                        stroke: #000;
+                        transform: translate(5px, 5px);
+                        stroke-dasharray: 950;
+                        stroke-dashoffset: 950;
+                        stroke-linecap: round;
 
-                .right {
-                    width: 50%;
-                    height: 100%;
+                        &:nth-child(1) {
+                            stroke-dashoffset: 0;
+                            stroke: #f3f3f3;
+                        }
+                        &:nth-child(2) {
+                            stroke-dashoffset: calc(950 - (950 * 0)/100);
+                            stroke: $accent; 
+                        }
+                    }
+                }
+
+                .number {
                     position: absolute;
-                    top: 0;
-                    right: 0;
-                    border: 10px solid red;
-                    border-radius: 0px 150px 150px 0px;
-                    border-left: 0;
-                    transform-origin: left;
-                }
+                    z-index: 10;
 
-                .left {
-                    width: 50%;
-                    height: 100%;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    border: 10px solid #222235;
-                    border-radius: 150px 0px 0px 150px;
-                    border-right: 0;
-                    transform-origin: left;
-                }
-
-                .value {
-                    color: black;
-                    font-size: 3rem;
-                    font-weight: bold;
-                }
-
-                &__open {
-                    animation-name: fadeIn;
-                    animation-duration: $timing;
-                    animation-iteration-count: 1;
-                    animation-fill-mode: forwards;
-                }
-
-                @keyframes fadeIn {
-                    0% {
-                        opacity: 1;
-                        transform: translateY(0px);
+                    .value {
+                        color: black;
+                        font-size: 3rem;
+                        font-weight: bold;
                     }
 
-                    50% {
-                        opacity: 0;
-                        transform: translateY(10px);
+                    .open {
+                        animation-name: fadeIn;
+                        animation-duration: $timing;
+                        animation-iteration-count: 1;
+                        animation-fill-mode: forwards;
                     }
 
-                    100% {
-                        transform: translateY(0px);
-                        opacity: 1;
+                    @keyframes fadeIn {
+                        0% {
+                            opacity: 1;
+                            transform: translateY(0px);
+                        }
+
+                        50% {
+                            opacity: 0;
+                            transform: translateY(10px);
+                        }
+
+                        100% {
+                            transform: translateY(0px);
+                            opacity: 1;
+                        }
+                    }
+
+                    .unset {
+                        animation-name: fadeOut;
+                        animation-duration: $timing;
+                        animation-iteration-count: 1;
+                        animation-fill-mode: forwards;
+                    }
+
+                    @keyframes fadeOut {
+                        0% {
+                            opacity: 1;
+                            transform: translateY(0px);
+                        }
+
+                        50% {
+                            opacity: 0;
+                            transform: translateY(10px);
+
+                        }
+
+                        100% {
+                            opacity: 1;
+                            transform: translateY(0px);
+                        }
                     }
                 }
 
-                &__unset {
-                    animation-name: fadeOut;
-                    animation-duration: $timing;
-                    animation-iteration-count: 1;
-                    animation-fill-mode: forwards;
-                }
 
-                @keyframes fadeOut {
-                    0% {
-                        opacity: 1;
-                        transform: translateY(0px);
-                    }
-
-                    50% {
-                        opacity: 0;
-                        transform: translateY(10px);
-
-                    }
-
-                    100% {
-                        opacity: 1;
-                        transform: translateY(0px);
-                    }
-                }
+                
             }
-
-
         }
 
         .control {
@@ -144,7 +162,7 @@ body {
                 font-size: 1.25rem;
                 font-weight: bold;
                 color: white;
-                background-color: $color;
+                background-color: $accent;
                 display: flex;
                 align-items: center;
                 justify-content: center;
