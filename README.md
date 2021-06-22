@@ -1,4 +1,4 @@
-# FAQ Accordian
+# Progress Bar
 ![Banner](https://raw.githubusercontent.com/PeterWorakarn/progress-bar/circle-progress/Slide%20%E2%80%93%20Progress-bar%403x.png)
 Simple Progress Circle Bar without additional UI Library
 
